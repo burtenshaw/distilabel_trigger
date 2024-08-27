@@ -221,14 +221,14 @@ def main():
     models = initialize_text_generation_models()
     ultrafeedback = initialize_ultrafeedback()
 
-    _completed = 0
     while True:
-        time.sleep(10)
+        time.sleep(2)
+
         dataset_progress = get_dataset_progress(dataset_id=dataset.id)
-        completed = dataset_progress["completed"]
-        if completed > _completed:
-            print(f"Completed {completed} records")
-            _completed = completed
+        completed_records = dataset_progress["completed"]
+
+        if completed_records > 0:
+            print(f"Completed {completed_records} records")
             respond_to_good_instructions(dataset, models, ultrafeedback)
 
 
